@@ -22,7 +22,7 @@ function setupInteractionLoop() {
     const ifc = readline.createInterface(process.stdin, process.stdout)
     const inputReceiver: Subject<ScoreAndBallWinner> = new Subject();
     inputReceiver
-        .map(nextScoreWithFormatting)
+        .map(nextScoreWithFormatting) // non mutable
         .do(displayAndAskForWinner)
         .subscribe();
     return displayAndAskForWinner;
