@@ -3,6 +3,7 @@ import * as ops from 'rxjs/operators'
 import {Subject} from "rxjs/Subject";
 
 import * as readline from 'readline';
+import {displayScore, nextScore, Score} from "./TennisLogic";
 
 const ifc = readline.createInterface(process.stdin, process.stdout)
 
@@ -20,15 +21,6 @@ inputReceiver.subscribe(({score, ballWinner}) => {
     consoleInteracter.next(nextScoreValue)
 });
 
-type Score = [number, number]
-
-function displayScore(score: Score) {
-
-}
-
-function nextScore(score: Score): (ballWinner: any) => Score {
-    return ballWinner => [score[0] + 1, score[1]]
-}
 
 consoleInteracter.next([0, 0])
 
