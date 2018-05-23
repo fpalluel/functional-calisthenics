@@ -1,26 +1,35 @@
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 import * as ops from 'rxjs/operators'
 import {Subject} from "rxjs/Subject";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 import * as readline from 'readline';
-import {displayScore, nextScore, Score} from "./TennisLogic";
+import {
+    createInitialScore,
+    nextScoreWithFormatting,
+    ScoreAndBallWinner,
+} from "./TennisLogic";
 
-const ifc = readline.createInterface(process.stdin, process.stdout)
+function setupInteractionLoop() {
+    function displayAndAskForWinner({score, formattedScore}) {
+        ifc.write('score: ' + formattedScore + "\n");
+        ifc.question('winner of next ball?', ballWinner => {
+            inputReceiver.next({score, ballWinner});
+        });
+    }
 
-const consoleInteracter: Subject<Score> = new Subject();
-
-const inputReceiver: Subject<{ score, ballWinner }> = new Subject();
-
-consoleInteracter.asObservable().subscribe(score => {
-    ifc.write('score: ' + displayScore(score) + "\n");
-    ifc.question('winner of next ball?', ballWinner => inputReceiver.next({score, ballWinner}));
-});
-
-inputReceiver.subscribe(({score, ballWinner}) => {
-    let nextScoreValue = nextScore(score)(ballWinner);
-    consoleInteracter.next(nextScoreValue)
-});
+    const ifc = readline.createInterface(process.stdin, process.stdout)
+    const inputReceiver: Subject<ScoreAndBallWinner> = new Subject();
+    inputReceiver
+        .map(nextScoreWithFormatting)
+        .do(displayAndAskForWinner)
+        .subscribe();
+    return displayAndAskForWinner;
+}
 
 
-consoleInteracter.next([0, 0])
+const displayAndAskForBallWinner = setupInteractionLoop();
+let initialScore = createInitialScore();
+displayAndAskForBallWinner(initialScore)
 
