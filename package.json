@@ -1,0 +1,27 @@
+{
+  "name": "tennis-refactoring-kata",
+  "version": "1.0.0",
+  "description": "Tennis refactoring kata in TypeScript",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "scripts": {
+    "build": "tsc --declaration -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json -w",
+    "test": "TS_NODE_FAST=true mocha --compilers ts:./node_modules/ts-node/register 'tests/**/*.test.ts'",
+    "test:watch": "TS_NODE_FAST=true mocha --reporter min  --compilers ts:./node_modules/ts-node/register --watch 'tests/**/*.test.ts'",
+    "clean": "rm -rf build"
+  },
+  "dependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/lodash": "^4.14.108",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.27",
+    "chai": "^4.0.1",
+    "lodash": "^4.17.10",
+    "mocha": "^3.4.2",
+    "rxjs": "^5.5.10",
+    "ts-node": "^3.0.4",
+    "tslib": "^1.7.1",
+    "typescript": "^2.5.0"
+  }
+}
