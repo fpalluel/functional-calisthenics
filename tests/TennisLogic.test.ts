@@ -69,5 +69,11 @@ describe('TennisLogic', () => {
                 expect(formatScore(score)).equal(result)
             });
         });
+        endOfGame.forEach(([p1, p2, result]) =>{
+            it('end of game', () => {
+                let score: Score = [p1, p2] as Score;
+                expect(formatScore(score)).equal(result)
+            });
+        });
     });
 });

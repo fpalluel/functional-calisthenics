@@ -25,15 +25,19 @@ function getPointScore(points: number) {
 
 export function formatScore([p1Points, p2Points]: Score) {
 
+
     if (p1Points === p2Points) {
         if (p1Points >= 3) {
             return 'Deuce';
         } else {
             return getPointScore(p1Points) + "-" + "All"
         }
+    } else if (p1Points <= 3 && p2Points <= 3) {
+        return getPointScore(p1Points) + "-" + getPointScore(p2Points)
     } else {
-        return getPointScore(p1Points)  + "-" + getPointScore(p2Points)
-
+        const getLeader = p1 => p2 => p1 >= p2 ? "player1" : "player2"
+        const typeOfResult = p1 => p2 => Math.abs(p1 - p2) > 1 ? "Win for " : "Advantage "
+        return typeOfResult(p1Points)(p2Points) + getLeader(p1Points)(p2Points)
     }
 }
 
