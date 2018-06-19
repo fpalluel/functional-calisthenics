@@ -1,0 +1,11 @@
+{application,ex_ncurses,
+             [{applications,[kernel,stdlib,elixir,logger]},
+              {description,"ExNcurses - a NIF interface to the ncurses lib.\n"},
+              {modules,['Elixir.ExNcurses','Elixir.ExNcurses.Application',
+                        'Elixir.ExNcurses.Getstr','Elixir.ExNcurses.Nif',
+                        'Elixir.ExNcurses.Server',
+                        'Elixir.ExNcurses.Server.State']},
+              {registered,[]},
+              {vsn,"0.3.1"},
+              {extra_applications,[logger]},
+              {mod,{'Elixir.ExNcurses.Application',[]}}]}.
