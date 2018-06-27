@@ -1,21 +1,25 @@
 # TennisGame
 
-**TODO: Add description**
+  Exercice "Functional calisthenics" en langage Elixir
 
-## Installation
+## Utilisation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `tennisgame` to your list of dependencies in `mix.exs`:
+### Installation de Elixir
 
-```elixir
-def deps do
-  [
-    {:tennisgame, "~> 0.1.0"}
-  ]
-end
-```
+https://elixir-lang.org/install.html
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/tennisgame](https://hexdocs.pm/tennisgame).
+### Téléchargement des dépendances
+ Dans le répertoire de travail :
+
+``` mix deps.get ```
+
+### Exécution des tests
+
+```mix test ```
+
+### Jouer
+
+```mix run -e TennisGame.play```
+
+
 
