@@ -1,3 +1,3 @@
 defmodule GameState do
-  defstruct status: :playing, scores: %PlayersScores{}
+  defstruct status: :waiting_key, scores: %PlayersScores{}
 end
