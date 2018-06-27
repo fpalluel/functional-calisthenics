@@ -45,7 +45,7 @@ defmodule TennisGameTest do
     [14, 16, :player_won, "Win for player2"]
   ]
 
-  test "display scores" do
+  test "it display right scores" do
     @allScores
     |> Enum.each(fn state ->
       assert capture_io(fn ->
@@ -54,8 +54,7 @@ defmodule TennisGameTest do
           scores: %PlayersScores{p1: Enum.at(state, 0), p2: Enum.at(state, 1)}
         }
         |> ScoresFormatter.display_score
-      end)
-        == Enum.at(state, 3) <> "\n"
+      end) == Enum.at(state, 3) <> "\n"
 
       state
       |> IO.inspect(label: "Test OK")
